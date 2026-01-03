@@ -1,4 +1,4 @@
-# 🌀 nohupuls
+# 🌀 nohuplus
 
 A lightweight personal task runner and logger — **not** a daemon, **not** a process supervisor.  
 Just a small CLI tool that helps you run commands in the background, record their logs, and clean them up later.
@@ -38,8 +38,8 @@ It behaves like `nohup`, but keeps lightweight task metadata in a tiny SQLite da
 ## ⚙️ Installation
 
 ```bash
-wget https://github.com/AriCortex1316/nohuplus/releases/download/v0.1.0/nohupuls
-chmod +x nohupuls
+wget https://github.com/AriCortex1316/nohuplus/releases/download/v0.2.0/nohuplus
+chmod +x nohuplus
 ```
 ---
 
