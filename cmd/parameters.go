@@ -26,8 +26,8 @@ func Execute() {
 					if err != nil {
 						return err
 					}
-					for _, v := range list {
-						fmt.Printf("[%d] pid=%d cmd=%s args=%v\n", v.ID, v.PID, v.Cmd, v.Args)
+					for i, v := range list {
+						fmt.Printf("[%d] pid=%d cmd=%s args=%v\n", i+1, v.PID, v.Cmd, v.Args)
 					}
 
 					return nil
@@ -46,7 +46,11 @@ func Execute() {
 					if err != nil {
 						return fmt.Errorf("invalid task id: %q (must be a number)", c.Args().First())
 					}
-					if err := commands.KillTask(id); err != nil {
+					resolvedID, err := commands.ResolveTaskID(id)
+					if err != nil {
+						return err
+					}
+					if err := commands.KillTask(resolvedID); err != nil {
 						return err
 					}
 					return nil
@@ -67,10 +71,14 @@ func Execute() {
 					if err != nil {
 						return fmt.Errorf("invalid task id: %q (must be a number)", c.Args().First())
 					}
+					resolvedID, err := commands.ResolveTaskID(id)
+					if err != nil {
+						return err
+					}
 					if c.Bool("f") {
-						commands.FollowLog(id)
+						commands.FollowLog(resolvedID)
 					} else {
-						commands.ShowLog(id)
+						commands.ShowLog(resolvedID)
 					}
 					return nil
 				},

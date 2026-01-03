@@ -20,8 +20,9 @@ func RunCommand(cmd string, args []string) (*core.Task, error) {
 	cmdName := filepath.Base(cmd)
 	re := regexp.MustCompile(`[^a-zA-Z0-9._-]+`)
 	cmdName = re.ReplaceAllString(cmdName, "_")
+	startTime := time.Now()
 	logPath := filepath.Join(core.AppPaths.LogDir,
-		fmt.Sprintf("%s_%s_%s.log", hash, cmdName, time.Now().Format("2006-01-02")))
+		fmt.Sprintf("%s_%s_%s.log", hash, cmdName, startTime.Format("2006-01-02_150405")))
 	logFile, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		return nil, err
@@ -36,6 +37,12 @@ func RunCommand(cmd string, args []string) (*core.Task, error) {
 
 	if err := execCmd.Start(); err != nil {
 		return nil, err
+	}
+
+	finalLogPath := filepath.Join(core.AppPaths.LogDir,
+		fmt.Sprintf("%s_%s_%s_%d.log", hash, cmdName, startTime.Format("2006-01-02_150405"), execCmd.Process.Pid))
+	if err := os.Rename(logPath, finalLogPath); err == nil {
+		logPath = finalLogPath
 	}
 
 	t := core.Task{
