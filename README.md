@@ -75,4 +75,4 @@ nohupuls kill 3
 ## 🪪 License
 
 MIT © 2025  
-Do whatever you want, but don’t pretend you wrote it first.
+Do whatever you want.
