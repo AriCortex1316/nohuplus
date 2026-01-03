@@ -9,7 +9,7 @@ Just a small CLI tool that helps you run commands in the background, record thei
 
 - 💤 **No daemon needed** – nothing runs in the background except your own commands.  
 - 🧾 **Persistent task store (SQLite)** – each background task is recorded with ID, PID, command, args, and log path.  
-- 📜 **Auto-generated logs** – every run creates a timestamped log file under `~/.local/state/nohupuls/logs`.  
+- 📜 **Auto-generated logs** – every run creates a timestamped log file under `~/.local/state/nohuplus/logs`.  
 - 🧹 **Kill & cleanup** – terminate tasks by ID or PID, remove them from the database automatically.  
 - 📦 **Portable single binary** – build once, run anywhere (no dependencies, no Python, no services).  
 
@@ -26,7 +26,7 @@ nothing critical, nothing worth `systemd`, `tmux`, or a full-blown supervisor.
 - Logs are scattered or overwritten.  
 - Killing a process means hunting for its PID manually.  
 
-**nohupuls** fills that gap.  
+**nohuplus** fills that gap.  
 It behaves like `nohup`, but keeps lightweight task metadata in a tiny SQLite database so you can:
 
 - list what’s running,  
@@ -47,17 +47,17 @@ chmod +x nohuplus
 
 ```bash
 # Run a command in background
-nohupuls bash /home/user/1.sh
+nohuplus bash /home/user/1.sh
 
 # Check all tasks
-nohupuls list
+nohuplus list
 
 # View logs
-nohupuls log 3          # show full log
-nohupuls log -f 3       # follow (tail -f style)
+nohuplus log 3          # show full log
+nohuplus log -f 3       # follow (tail -f style)
 
 # Kill a task by ID
-nohupuls kill 3
+nohuplus kill 3
 ```
 
 ---

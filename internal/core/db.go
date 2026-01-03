@@ -14,7 +14,7 @@ var db *sql.DB
 // 兜底：如果你已有 AppPaths.BaseDir，就删掉这个函数用你自己的路径。
 func defaultBaseDir() string {
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".local", "share", "nohupuls")
+	return filepath.Join(home, ".local", "share", "nohuplus")
 }
 
 func InitDB() error {

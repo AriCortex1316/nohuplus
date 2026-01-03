@@ -12,7 +12,7 @@ import (
 
 func Execute() {
 	app := &cli.App{
-		Name:  "nohupuls",
+		Name:  "nohuplus",
 		Usage: "Run and manage background processes",
 		Commands: []*cli.Command{
 			{
